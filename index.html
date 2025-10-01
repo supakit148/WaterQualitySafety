@@ -1,202 +1,202 @@
-!DOCTYPE html
-html lang=en
-head
-meta charset=UTF-8
-titleWater Quality & Safetytitle
-script src=httpscdn.jsdelivr.netnpmchart.jsscript
-style
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Water Quality & Safety</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
   body {
-    font-family Inter, sans-serif;
-    background linear-gradient(135deg, #0f172a, #1e293b);
-    color #e2e8f0;
-    margin 0;
-    padding 20px;
+    font-family: "Inter", sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #e2e8f0;
+    margin: 0;
+    padding: 20px;
   }
   header {
-    text-align center;
-    margin-bottom 30px;
+    text-align: center;
+    margin-bottom: 30px;
   }
   header h1 {
-    font-size 28px;
-    font-weight 700;
-    color #22d3ee;
+    font-size: 28px;
+    font-weight: 700;
+    color: #22d3ee;
   }
 
   .dashboard {
-    display grid;
-    grid-template-columns repeat(auto-fit, minmax(320px, 1fr));
-    gap 20px;
-    max-width 1400px;
-    margin auto;
-    grid-auto-rows 320px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    max-width: 1400px;
+    margin: auto;
+    grid-auto-rows: 320px;
   }
 
   .card {
-    background #1e293b;
-    border-radius 18px;
-    padding 20px;
-    display flex;
-    flex-direction column;
-    justify-content space-between;
-    box-shadow 0 8px 25px rgba(0,0,0,0.25);
+    background: #1e293b;
+    border-radius: 18px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
   }
   .card h2 {
-    font-size 16px;
-    color #22d3ee;
-    margin-bottom 10px;
-    text-transform uppercase;
+    font-size: 16px;
+    color: #22d3ee;
+    margin-bottom: 10px;
+    text-transform: uppercase;
   }
 
   .progress-ring {
-    displayflex;
-    justify-content center;
-    align-items center;
-    flex1;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex:1;
   }
   .circle {
-    width 140px;
-    height 140px;
-    border-radius 50%;
-    background conic-gradient(#22d3ee 90%, #334155 0);
-    display flex;
-    align-items center;
-    justify-content center;
-    font-size 22px;
-    font-weight bold;
-    color #facc15;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: conic-gradient(#22d3ee 90%, #334155 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #facc15;
   }
 
   .info-box {
-    background rgba(255,255,255,0.05);
-    border-radius 10px;
-    padding 6px;
-    font-size 14px;
-    text-align center;
-    margin-top 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    padding: 6px;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
   }
 
   canvas {
-    max-height 180px;
+    max-height: 180px;
   }
-style
-head
-body
+</style>
+</head>
+<body>
 
-header
-  h1💧 Water Quality & Safetyh1
-header
+<header>
+  <h1>💧 Water Quality & Safety</h1>
+</header>
 
-div class=dashboard
-  !-- Water Safety Compliance --
-  div class=card
-    h2Water Safety Indexh2
-    div class=progress-ring
-      div class=circle90%div
-    div
-    div class=info-boxHomes with safe water qualitydiv
-  div
+<div class="dashboard">
+  <!-- Water Safety Compliance -->
+  <div class="card">
+    <h2>Water Safety Index</h2>
+    <div class="progress-ring">
+      <div class="circle">90%</div>
+    </div>
+    <div class="info-box">Homes with safe water quality</div>
+  </div>
 
-  !-- pH & Turbidity --
-  div class=card
-    h2pH & Turbidityh2
-    canvas id=phTurbiditycanvas
-  div
+  <!-- pH & Turbidity -->
+  <div class="card">
+    <h2>pH & Turbidity</h2>
+    <canvas id="phTurbidity"></canvas>
+  </div>
 
-  !-- Residual Chlorine & TDS --
-  div class=card
-    h2Chlorine & TDSh2
-    canvas id=chlorineTdscanvas
-  div
+  <!-- Residual Chlorine & TDS -->
+  <div class="card">
+    <h2>Chlorine & TDS</h2>
+    <canvas id="chlorineTds"></canvas>
+  </div>
 
-  !-- Water Consumption Trend --
-  div class=card
-    h2Water Consumption Trendh2
-    canvas id=waterTrendcanvas
-  div
-div
+  <!-- Water Consumption Trend -->
+  <div class="card">
+    <h2>Water Consumption Trend</h2>
+    <canvas id="waterTrend"></canvas>
+  </div>
+</div>
 
-script
- pH & Turbidity Bar 
+<script>
+/* pH & Turbidity Bar */
 new Chart(document.getElementById('phTurbidity'), {
-  type 'bar',
-  data {
-    labels ['House 1', 'House 2', 'House 3', 'House 4', 'House 5'],
-    datasets [{
-      label 'pH',
-      data [7.1, 6.9, 7.3, 7.0, 6.8],
-      backgroundColor '#22d3ee'
+  type: 'bar',
+  data: {
+    labels: ['House 1', 'House 2', 'House 3', 'House 4', 'House 5'],
+    datasets: [{
+      label: 'pH',
+      data: [7.1, 6.9, 7.3, 7.0, 6.8],
+      backgroundColor: '#22d3ee'
     },{
-      label 'Turbidity (NTU)',
-      data [0.5, 0.7, 0.4, 1.2, 0.6],
-      backgroundColor '#facc15'
+      label: 'Turbidity (NTU)',
+      data: [0.5, 0.7, 0.4, 1.2, 0.6],
+      backgroundColor: '#facc15'
     }]
   },
-  options {
-    maintainAspectRatiofalse,
-    scales {
-      x{ticks{color'#94a3b8'}},
-      y{ticks{color'#94a3b8'}, beginAtZerotrue}
+  options: {
+    maintainAspectRatio:false,
+    scales: {
+      x:{ticks:{color:'#94a3b8'}},
+      y:{ticks:{color:'#94a3b8'}, beginAtZero:true}
     },
-    plugins{legend{labels{color'#94a3b8'}}}
+    plugins:{legend:{labels:{color:'#94a3b8'}}}
   }
 });
 
- Chlorine & TDS Line 
+/* Chlorine & TDS Line */
 new Chart(document.getElementById('chlorineTds'), {
-  type 'line',
-  data {
-    labels ['6AM','9AM','12PM','3PM','6PM','9PM'],
-    datasets [{
-      label 'Residual Chlorine (mgL)',
-      data [0.6,0.7,0.8,0.7,0.6,0.65],
-      borderColor'#22c55e',
-      backgroundColor'rgba(34,197,94,0.2)',
-      filltrue,
-      tension0.4
+  type: 'line',
+  data: {
+    labels: ['6AM','9AM','12PM','3PM','6PM','9PM'],
+    datasets: [{
+      label: 'Residual Chlorine (mg/L)',
+      data: [0.6,0.7,0.8,0.7,0.6,0.65],
+      borderColor:'#22c55e',
+      backgroundColor:'rgba(34,197,94,0.2)',
+      fill:true,
+      tension:0.4
     },{
-      label 'TDS (ppm)',
-      data [120,130,150,140,125,110],
-      borderColor'#f97316',
-      backgroundColor'rgba(249,115,22,0.2)',
-      filltrue,
-      tension0.4
+      label: 'TDS (ppm)',
+      data: [120,130,150,140,125,110],
+      borderColor:'#f97316',
+      backgroundColor:'rgba(249,115,22,0.2)',
+      fill:true,
+      tension:0.4
     }]
   },
-  options {
-    maintainAspectRatiofalse,
-    scales{
-      x{ticks{color'#94a3b8'}},
-      y{ticks{color'#94a3b8'}, beginAtZerotrue}
+  options: {
+    maintainAspectRatio:false,
+    scales:{
+      x:{ticks:{color:'#94a3b8'}},
+      y:{ticks:{color:'#94a3b8'}, beginAtZero:true}
     },
-    plugins{legend{labels{color'#94a3b8'}}}
+    plugins:{legend:{labels:{color:'#94a3b8'}}}
   }
 });
 
- Water Consumption Trend 
+/* Water Consumption Trend */
 new Chart(document.getElementById('waterTrend'), {
-  type 'line',
-  data {
-    labels ['Jan','Feb','Mar','Apr','May','Jun','Jul'],
-    datasets [{
-      label 'Consumption (m³)',
-      data [25,28,22,30,27,29,31],
-      borderColor'#22d3ee',
-      backgroundColor'rgba(34,211,238,0.2)',
-      filltrue,
-      tension0.4,
-      pointRadius4
+  type: 'line',
+  data: {
+    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul'],
+    datasets: [{
+      label: 'Consumption (m³)',
+      data: [25,28,22,30,27,29,31],
+      borderColor:'#22d3ee',
+      backgroundColor:'rgba(34,211,238,0.2)',
+      fill:true,
+      tension:0.4,
+      pointRadius:4
     }]
   },
-  options{
-    maintainAspectRatiofalse,
-    scales{
-      x{ticks{color'#94a3b8'}},
-      y{ticks{color'#94a3b8'}, beginAtZerotrue}
+  options:{
+    maintainAspectRatio:false,
+    scales:{
+      x:{ticks:{color:'#94a3b8'}},
+      y:{ticks:{color:'#94a3b8'}, beginAtZero:true}
     },
-    plugins{legend{labels{color'#94a3b8'}}}
+    plugins:{legend:{labels:{color:'#94a3b8'}}}
   }
 });
-script
+</script>
 
-body
-html
+</body>
+</html>
